@@ -1,0 +1,11 @@
+<% if controller.is_a?(TimelogController) && %w[index report].include?(controller.action_name) %>
+  <%
+    filters = request.query_parameters
+    calendar_url = project ? project_timesheet_calendar_path(project, filters) : timesheet_calendar_path(filters)
+  %>
+  <div id="ots-calendar-tab-data"
+       data-url="<%= calendar_url %>"
+       data-label="<%= l(:label_open_timesheets_calendar) %>"
+       style="display: none;"></div>
+  <%= javascript_include_tag 'open_timesheets', plugin: 'redmine_open_timesheets' %>
+<% end %>

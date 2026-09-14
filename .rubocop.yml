@@ -1,0 +1,48 @@
+AllCops:
+  TargetRubyVersion: 3.1
+  NewCops: enable
+  Exclude:
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+# Kept enabled on purpose, unlike redmine_open_notifications: every file here
+# already carries the magic comment, so the cop guards a convention we follow
+# instead of silencing one we ignore.
+
+Layout/LineLength:
+  Max: 160
+
+# Keep the cop, pick the other legitimate style. Years inside identifiers
+# (holiday_victory_1945, test_fixed_holidays_2026) read correctly in
+# snake_case; the default normalcase would demand holiday_victory1945.
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+
+# Migrations are declarative table definitions: their length reflects the number
+# of columns, not complexity. Splitting one would obscure the schema.
+
+# On a test class, length measures coverage rather than complexity. Splitting a
+# test class to satisfy a line count moves cases away from what they cover.
+Metrics/ClassLength:
+  Exclude:
+    - 'test/**/*'
+
+# Test names describe a case in full; a long one is a good one.
+Metrics/BlockLength:
+  Exclude:
+    - 'test/**/*'
+
+# Same reasoning as ClassLength: on a test, these metrics count assertions.
+# A test that checks ten fields of a payload is a thorough test, not a complex
+# one, and splitting it would scatter what belongs together.
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/**/*'
+    - 'test/**/*'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'test/**/*'

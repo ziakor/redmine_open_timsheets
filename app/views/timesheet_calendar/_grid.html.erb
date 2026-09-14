@@ -1,0 +1,16 @@
+<ul class="cal">
+  <li class="calhead week-number" title="<%= l(:label_week) %>"></li>
+  <% 7.times do |offset| %>
+    <li class="calhead"><%= day_name((@calendar.first_wday + offset) % 7) %></li>
+  <% end %>
+
+  <%# format_month returns the whole displayed range, a week or a month. %>
+  <% @calendar.format_month.each_slice(7) do |week| %>
+    <li class="week-number">
+      <span class="label-week"><%= l(:label_week) %></span> <%= @calendar.week_number(week.first) %>
+    </li>
+    <% week.each do |day| %>
+      <%= render partial: 'timesheet_calendar/day', locals: { day: day } %>
+    <% end %>
+  <% end %>
+</ul>

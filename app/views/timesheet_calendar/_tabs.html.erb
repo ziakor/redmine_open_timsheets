@@ -1,0 +1,10 @@
+<div class="tabs ots-tabs hide-when-print">
+  <% filters = request.query_parameters.except('year', 'month') %>
+  <ul>
+    <li><%= link_to l(:label_details), _time_entries_path(@project, nil, params: filters) %></li>
+    <li><%= link_to l(:label_report), _report_time_entries_path(@project, nil, params: filters) %></li>
+    <li><%= link_to l(:label_open_timesheets_calendar),
+                    timesheet_calendar_path_for(@project, request.query_parameters),
+                    class: 'selected' %></li>
+  </ul>
+</div>

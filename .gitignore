@@ -1,0 +1,19 @@
+# Conception interne : contient les metriques de l'instance de production.
+# Conserve en local et dans le Vault Obsidian, hors du depot public.
+docs/
+
+# Ruby / Rails
+*.gem
+*.rbc
+.bundle/
+vendor/bundle/
+log/
+tmp/
+.rubocop_cache/
+coverage/
+
+# Editeurs et OS
+.idea/
+.vscode/
+*.swp
+.DS_Store

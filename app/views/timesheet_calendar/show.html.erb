@@ -1,0 +1,33 @@
+<h2><%= l(:label_spent_time) %></h2>
+
+<%= form_tag(timesheet_calendar_path_for(@project), method: :get, id: 'query_form') do %>
+  <%= render partial: 'queries/query_form' %>
+<% end %>
+
+<%= render partial: 'timesheet_calendar/tabs' %>
+
+<% if @query.valid? %>
+  <div class="ots-calendar" data-mode="<%= @summary.personal? ? 'personal' : 'collective' %>">
+    <%= render partial: 'timesheet_calendar/summary' %>
+
+    <%= render partial: 'timesheet_calendar/period_nav' %>
+
+    <%= render partial: 'timesheet_calendar/grid' %>
+  </div>
+<% else %>
+  <%= error_messages_for 'query' %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render partial: 'timelog/sidebar' %>
+
+  <h3><%= l(:label_open_timesheets_absences) %></h3>
+  <p><%= link_to l(:label_open_timesheets_absences), timesheet_absences_path %></p>
+
+  <% if OpenTimesheetsTeamViewer.allowed?(User.current) %>
+    <h3><%= l(:label_open_timesheets_team) %></h3>
+    <p><%= link_to l(:label_open_timesheets_team), open_timesheets_team_path %></p>
+  <% end %>
+<% end %>
+
+<% html_title(l(:label_spent_time), l(:label_open_timesheets_calendar)) %>

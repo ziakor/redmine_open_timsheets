@@ -1,0 +1,37 @@
+<h2><%= l(:label_open_timesheets_tracking) %></h2>
+
+<p class="ots-note"><%= l(:text_open_timesheets_tracking_help) %></p>
+
+<%= form_tag(open_timesheets_tracking_path) do %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l(:label_user) %></th>
+        <th><%= l(:label_open_timesheets_tracked) %></th>
+        <th><%= l(:label_open_timesheets_team_view_allowed) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user %></td>
+          <td>
+            <%= check_box_tag "tracking[#{user.id}]", '1',
+                              !@exempt_user_ids.include?(user.id), id: nil %>
+          </td>
+          <td>
+            <% if user.admin? %>
+              <%= check_box_tag 'admin_always', '1', true, disabled: true, id: nil %>
+              <span class="ots-note"><%= l(:field_admin) %></span>
+            <% else %>
+              <%= check_box_tag "team_view[#{user.id}]", '1',
+                                @team_viewer_ids.include?(user.id), id: nil %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p><%= submit_tag l(:button_save) %></p>
+<% end %>

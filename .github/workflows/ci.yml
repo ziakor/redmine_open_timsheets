@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Syntaxe et lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - name: Syntaxe Ruby
+        run: |
+          set -eo pipefail
+          find . -name '*.rb' -exec ruby -c {} + > /dev/null
+
+      - name: Locales YAML valides
+        run: |
+          set -eo pipefail
+          ruby -e "require 'yaml'; Dir.glob('config/locales/*.yml').each { |f| YAML.load_file(f) }"
+
+      - name: Parite des cles de traduction
+        run: |
+          set -eo pipefail
+          ruby -e '
+            require "yaml"
+            fr = YAML.load_file("config/locales/fr.yml")["fr"].keys.sort
+            en = YAML.load_file("config/locales/en.yml")["en"].keys.sort
+            missing_en = fr - en
+            missing_fr = en - fr
+            abort("Cles absentes de en.yml : #{missing_en.join(", ")}") unless missing_en.empty?
+            abort("Cles absentes de fr.yml : #{missing_fr.join(", ")}") unless missing_fr.empty?
+            puts "Parite OK (#{fr.size} cles)"
+          '
+
+      - name: Typographie ASCII
+        run: |
+          set -eo pipefail
+          if grep -rnP '[\x{2013}\x{2014}\x{2018}\x{2019}\x{201C}\x{201D}\x{2026}\x{00A0}]' \
+               --include='*.rb' --include='*.erb' --include='*.yml' \
+               --include='*.css' --include='*.js' --include='*.md' .; then
+            echo "Caracteres typographiques interdits detectes"
+            exit 1
+          fi
+          echo "Typographie OK"
+
+      - name: RuboCop
+        run: |
+          set -eo pipefail
+          gem install rubocop -v 1.68.0 --no-document
+          rubocop --format progress

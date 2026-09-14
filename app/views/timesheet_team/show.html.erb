@@ -1,0 +1,74 @@
+<h2><%= l(:label_open_timesheets_team) %></h2>
+
+<p class="ots-nav">
+  <span class="ots-nav-steps">
+    <%= link_to l(:label_previous),
+                open_timesheets_team_path(calendar_step_params(@date, @period, -1)),
+                class: 'ots-prev' %>
+    <strong class="ots-month"
+            data-year="<%= @date.year %>"
+            data-month="<%= @date.month %>"
+            data-period="<%= @period %>">
+      <%= calendar_period_label(@calendar, @date, @period) %>
+    </strong>
+    <%= link_to l(:label_next),
+                open_timesheets_team_path(calendar_step_params(@date, @period, 1)),
+                class: 'ots-next' %>
+  </span>
+
+  <span class="ots-period-switch">
+    <% %i[month week].each do |candidate| %>
+      <%= link_to l(:"label_open_timesheets_period_#{candidate}"),
+                  open_timesheets_team_path(calendar_period_params(@date, candidate)),
+                  class: "ots-period-#{candidate}#{' selected' if @period == candidate}" %>
+    <% end %>
+  </span>
+</p>
+
+<div class="ots-summary">
+  <span class="ots-team-total">
+    <strong><%= l(:label_open_timesheets_people_behind, count: @team.users_with_missing_days) %></strong>
+  </span>
+  <span class="ots-team-missing">
+    <%= l(:label_open_timesheets_missing_days, count: @team.total_missing_days) %>
+  </span>
+</div>
+
+<% if @team.rows.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <table class="list ots-team">
+    <thead>
+      <tr>
+        <th><%= l(:label_user) %></th>
+        <th><%= l(:label_open_timesheets_missing_days_column) %></th>
+        <th><%= l(:label_open_timesheets_declared_days_column) %></th>
+        <th><%= l(:label_open_timesheets_expected_days_column) %></th>
+        <th><%= l(:label_open_timesheets_completion) %></th>
+        <th><%= l(:label_open_timesheets_hours) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @team.rows.each do |row| %>
+        <tr class="<%= 'ots-team-behind' if row.missing_days.positive? %>">
+          <td><%= link_to row.user, user_path(row.user) %></td>
+          <td class="ots-team-missing-cell"><%= row.missing_days %></td>
+          <td><%= row.declared_days %></td>
+          <td><%= row.expected_days %></td>
+          <td>
+            <% if row.completion_percent %>
+              <%= "#{row.completion_percent} %" %>
+            <% else %>
+              <span class="ots-note"><%= l(:label_open_timesheets_nothing_owed) %></span>
+            <% end %>
+          </td>
+          <td><%= format_hours(row.hours) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<p class="ots-note"><%= l(:text_open_timesheets_team_scope) %></p>
+
+<% html_title(l(:label_open_timesheets_team)) %>

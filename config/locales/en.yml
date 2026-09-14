@@ -1,0 +1,96 @@
+en:
+  label_open_timesheets_calendar: "Calendar"
+  label_open_timesheets_holiday_region: "Public holidays"
+  label_open_timesheets_region_fr: "France"
+  label_open_timesheets_region_fr_alsace_moselle: "France (Alsace-Moselle)"
+
+  holiday_new_year: "New Year's Day"
+  holiday_easter_monday: "Easter Monday"
+  holiday_labour_day: "Labour Day"
+  holiday_victory_1945: "Victory in Europe Day"
+  holiday_ascension: "Ascension Day"
+  holiday_whit_monday: "Whit Monday"
+  holiday_bastille_day: "Bastille Day"
+  holiday_assumption: "Assumption of Mary"
+  holiday_all_saints: "All Saints' Day"
+  holiday_armistice: "Armistice Day"
+  holiday_christmas: "Christmas Day"
+  holiday_good_friday: "Good Friday"
+  holiday_st_stephen: "St Stephen's Day"
+
+  field_open_timesheets_absence_start_date: "From"
+  field_open_timesheets_absence_end_date: "To"
+  field_open_timesheets_absence_absence_type: "Reason"
+  field_open_timesheets_absence_half_day: "Half day"
+
+  absence_type_conges: "Leave"
+  absence_type_maladie: "Sick leave"
+  absence_type_formation: "Training"
+  absence_type_autre: "Other"
+
+  label_open_timesheets_declared_days:
+    zero: "No declared day"
+    one: "1 declared day"
+    other: "%{count} declared days"
+  label_open_timesheets_hours: "Hours"
+  label_open_timesheets_day_missing: "Day not declared"
+  text_open_timesheets_collective_mode: "Several users selected: expected and missing days are not computed. Filter on a single person to see them."
+  label_open_timesheets_missing_days:
+    zero: "No missing day"
+    one: "1 missing day"
+    other: "%{count} missing days"
+
+  label_open_timesheets_tracking: "Day tracking"
+  label_open_timesheets_tracked: "Tracked"
+  text_open_timesheets_tracking_help: "By default everyone is tracked. Uncheck a row to exempt someone."
+
+  label_open_timesheets_absences: "My absences"
+  label_open_timesheets_absence_new: "New absence"
+  label_open_timesheets_absence_edit: "Edit absence"
+  text_open_timesheets_half_day_help: "Tick for a half day absence. The day still has to be declared."
+
+  label_open_timesheets_period_month: "Month"
+  label_open_timesheets_period_week: "Week"
+
+  label_open_timesheets_team: "Team tracking"
+  label_open_timesheets_user_tracking: "Time tracking"
+  label_open_timesheets_view_calendar: "View calendar"
+  label_open_timesheets_missing_days_column: "Missing"
+  label_open_timesheets_declared_days_column: "Declared"
+  label_open_timesheets_expected_days_column: "Owed so far"
+  label_open_timesheets_completion: "Completion"
+  label_open_timesheets_nothing_owed: "Nothing owed"
+  label_open_timesheets_team_view_allowed: "Team tracking access"
+  text_open_timesheets_team_scope: "Only the entries you are allowed to see in Redmine are counted. People exempt from tracking are not listed."
+  label_open_timesheets_people_behind:
+    zero: "Nobody behind"
+    one: "1 person behind"
+    other: "%{count} people behind"
+
+  label_open_timesheets_reminder_lookback: "Reminder window (days)"
+  text_open_timesheets_reminder_lookback_help: "Number of past days the reminder task looks at. The current day is never counted."
+  mail_subject_open_timesheets_reminder:
+    one: "1 undeclared day"
+    other: "%{count} undeclared days"
+  mail_body_open_timesheets_reminder:
+    one: "You have not declared any time on the following day:"
+    other: "You have not declared any time on the following %{count} days:"
+
+  field_open_timesheets_csv_date: "Date"
+  field_open_timesheets_csv_day: "Day"
+  field_open_timesheets_csv_status: "Status"
+  field_open_timesheets_csv_hours: "Hours"
+  field_open_timesheets_csv_entries: "Entries"
+
+  field_open_timesheets_team_csv_user: "User"
+  field_open_timesheets_team_csv_missing: "Missing days"
+  field_open_timesheets_team_csv_declared: "Declared days"
+  field_open_timesheets_team_csv_expected: "Owed days"
+  field_open_timesheets_team_csv_completion: "Completion (%)"
+  field_open_timesheets_team_csv_hours: "Hours"
+
+  errors:
+    messages:
+      greater_than_start_date: "must be on or after the start date"
+      absence_overlaps: "This absence overlaps another one."
+      half_day_needs_single_date: "only applies to a single day"

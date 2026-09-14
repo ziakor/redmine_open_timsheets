@@ -1,0 +1,12 @@
+<% if OpenTimesheetsTeamViewer.allowed?(User.current) %>
+  <div id="open-timesheets-user-calendar">
+    <h3><%= l(:label_open_timesheets_user_tracking) %></h3>
+    <p>
+      <%= link_to l(:label_open_timesheets_view_calendar),
+                  timesheet_calendar_path(set_filter: 1,
+                                          f: ['user_id'],
+                                          op: { user_id: '=' },
+                                          v: { user_id: [user.id] }) %>
+    </p>
+  </div>
+<% end %>

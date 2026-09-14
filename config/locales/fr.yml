@@ -1,0 +1,96 @@
+fr:
+  label_open_timesheets_calendar: "Calendrier"
+  label_open_timesheets_holiday_region: "Jours fériés"
+  label_open_timesheets_region_fr: "France"
+  label_open_timesheets_region_fr_alsace_moselle: "France (Alsace-Moselle)"
+
+  holiday_new_year: "Jour de l'an"
+  holiday_easter_monday: "Lundi de Pâques"
+  holiday_labour_day: "Fête du Travail"
+  holiday_victory_1945: "Victoire 1945"
+  holiday_ascension: "Ascension"
+  holiday_whit_monday: "Lundi de Pentecôte"
+  holiday_bastille_day: "Fête nationale"
+  holiday_assumption: "Assomption"
+  holiday_all_saints: "Toussaint"
+  holiday_armistice: "Armistice"
+  holiday_christmas: "Noël"
+  holiday_good_friday: "Vendredi saint"
+  holiday_st_stephen: "Saint-Étienne"
+
+  field_open_timesheets_absence_start_date: "Du"
+  field_open_timesheets_absence_end_date: "Au"
+  field_open_timesheets_absence_absence_type: "Motif"
+  field_open_timesheets_absence_half_day: "Demi-journée"
+
+  absence_type_conges: "Congés"
+  absence_type_maladie: "Maladie"
+  absence_type_formation: "Formation"
+  absence_type_autre: "Autre"
+
+  label_open_timesheets_declared_days:
+    zero: "Aucune journée déclarée"
+    one: "1 journée déclarée"
+    other: "%{count} journées déclarées"
+  label_open_timesheets_hours: "Heures"
+  label_open_timesheets_day_missing: "Journée non déclarée"
+  text_open_timesheets_collective_mode: "Plusieurs utilisateurs sélectionnés : les journées attendues et manquantes ne sont pas calculées. Filtrez sur une seule personne pour les afficher."
+  label_open_timesheets_missing_days:
+    zero: "Aucune journée manquante"
+    one: "1 journée manquante"
+    other: "%{count} journées manquantes"
+
+  label_open_timesheets_tracking: "Suivi des journées"
+  label_open_timesheets_tracked: "Soumis au suivi"
+  text_open_timesheets_tracking_help: "Par défaut, tout le monde est soumis au suivi des journées. Décochez une ligne pour dispenser quelqu'un."
+
+  label_open_timesheets_absences: "Mes absences"
+  label_open_timesheets_absence_new: "Nouvelle absence"
+  label_open_timesheets_absence_edit: "Modifier l'absence"
+  text_open_timesheets_half_day_help: "Cochez pour une absence d'une demi-journée. La journée reste à déclarer."
+
+  label_open_timesheets_period_month: "Mois"
+  label_open_timesheets_period_week: "Semaine"
+
+  label_open_timesheets_team: "Suivi de l'équipe"
+  label_open_timesheets_user_tracking: "Suivi du temps"
+  label_open_timesheets_view_calendar: "Voir le calendrier"
+  label_open_timesheets_missing_days_column: "Manquantes"
+  label_open_timesheets_declared_days_column: "Déclarées"
+  label_open_timesheets_expected_days_column: "Dues à ce jour"
+  label_open_timesheets_completion: "Complétude"
+  label_open_timesheets_nothing_owed: "Rien de dû"
+  label_open_timesheets_team_view_allowed: "Accès au suivi d'équipe"
+  text_open_timesheets_team_scope: "Seules les saisies que vous êtes autorisé à voir dans Redmine sont comptées. Les personnes dispensées de suivi n'apparaissent pas."
+  label_open_timesheets_people_behind:
+    zero: "Personne en retard"
+    one: "1 personne en retard"
+    other: "%{count} personnes en retard"
+
+  label_open_timesheets_reminder_lookback: "Fenêtre de rappel (jours)"
+  text_open_timesheets_reminder_lookback_help: "Nombre de jours passés examinés par la tâche de rappel. La journée en cours n'est jamais comptée."
+  mail_subject_open_timesheets_reminder:
+    one: "1 journée non déclarée"
+    other: "%{count} journées non déclarées"
+  mail_body_open_timesheets_reminder:
+    one: "Vous n'avez pas déclaré de temps sur la journée suivante :"
+    other: "Vous n'avez pas déclaré de temps sur les %{count} journées suivantes :"
+
+  field_open_timesheets_csv_date: "Date"
+  field_open_timesheets_csv_day: "Jour"
+  field_open_timesheets_csv_status: "Statut"
+  field_open_timesheets_csv_hours: "Heures"
+  field_open_timesheets_csv_entries: "Saisies"
+
+  field_open_timesheets_team_csv_user: "Utilisateur"
+  field_open_timesheets_team_csv_missing: "Journées manquantes"
+  field_open_timesheets_team_csv_declared: "Journées déclarées"
+  field_open_timesheets_team_csv_expected: "Journées dues"
+  field_open_timesheets_team_csv_completion: "Complétude (%)"
+  field_open_timesheets_team_csv_hours: "Heures"
+
+  errors:
+    messages:
+      greater_than_start_date: "doit être postérieure ou égale à la date de début"
+      absence_overlaps: "Cette absence en chevauche une autre."
+      half_day_needs_single_date: "ne s'applique qu'à une journée unique"

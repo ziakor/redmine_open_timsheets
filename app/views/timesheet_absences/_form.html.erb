@@ -1,0 +1,15 @@
+<%= error_messages_for @absence %>
+
+<div class="box tabular">
+  <p><%= f.date_field :start_date, required: true %></p>
+  <p><%= f.date_field :end_date, required: true %></p>
+  <p>
+    <%= f.select :absence_type,
+                 OpenTimesheetsAbsence.available_types.map { |type| [l("absence_type_#{type}"), type] } %>
+  </p>
+  <p>
+    <%= f.check_box :half_day %>
+    <em class="info"><%= l(:text_open_timesheets_half_day_help) %></em>
+  </p>
+  <p><%= f.text_field :comments, size: 60 %></p>
+</div>

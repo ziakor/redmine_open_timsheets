@@ -1,0 +1,9 @@
+<p><%= l(:mail_body_open_timesheets_reminder, count: @missing_days.size) %></p>
+
+<ul>
+  <% @missing_days.each do |day| %>
+    <li><%= format_date(day) %></li>
+  <% end %>
+</ul>
+
+<p><%= link_to l(:label_open_timesheets_calendar), @calendar_url %></p>

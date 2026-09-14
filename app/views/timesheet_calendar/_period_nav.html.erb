@@ -1,0 +1,24 @@
+<p class="ots-nav">
+  <span class="ots-nav-steps">
+    <%= link_to l(:label_previous),
+                timesheet_calendar_path_for(@project, request.query_parameters.merge(calendar_step_params(@date, @period, -1))),
+                class: 'ots-prev' %>
+    <strong class="ots-month"
+            data-year="<%= @date.year %>"
+            data-month="<%= @date.month %>"
+            data-period="<%= @period %>">
+      <%= calendar_period_label(@calendar, @date, @period) %>
+    </strong>
+    <%= link_to l(:label_next),
+                timesheet_calendar_path_for(@project, request.query_parameters.merge(calendar_step_params(@date, @period, 1))),
+                class: 'ots-next' %>
+  </span>
+
+  <span class="ots-period-switch">
+    <% %i[month week].each do |candidate| %>
+      <%= link_to l(:"label_open_timesheets_period_#{candidate}"),
+                  timesheet_calendar_path_for(@project, request.query_parameters.merge(calendar_period_params(@date, candidate))),
+                  class: "ots-period-#{candidate}#{' selected' if @period == candidate}" %>
+    <% end %>
+  </span>
+</p>

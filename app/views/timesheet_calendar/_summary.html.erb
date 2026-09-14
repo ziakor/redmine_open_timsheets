@@ -1,0 +1,17 @@
+<div class="ots-summary">
+  <% if @summary.personal? %>
+    <span class="ots-missing-days">
+      <strong><%= l(:label_open_timesheets_missing_days, count: @summary.missing_days) %></strong>
+    </span>
+    <span class="ots-declared-days">
+      <%= l(:label_open_timesheets_declared_days, count: @summary.logged_days) %>
+    </span>
+  <% else %>
+    <span class="ots-collective-notice"><%= l(:text_open_timesheets_collective_mode) %></span>
+  <% end %>
+
+  <span class="ots-hours">
+    <%= l(:label_open_timesheets_hours) %>
+    <strong><%= format_hours(@summary.total_hours) %></strong>
+  </span>
+</div>

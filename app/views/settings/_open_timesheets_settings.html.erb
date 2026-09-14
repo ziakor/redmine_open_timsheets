@@ -1,0 +1,14 @@
+<div class="box tabular settings">
+  <p>
+    <label for="settings_holiday_region"><%= l(:label_open_timesheets_holiday_region) %></label>
+    <%= select_tag 'settings[holiday_region]',
+                   options_for_select([[l(:label_open_timesheets_region_fr), 'fr'],
+                                       [l(:label_open_timesheets_region_fr_alsace_moselle), 'fr_alsace_moselle']],
+                                      @settings['holiday_region']) %>
+  </p>
+  <p>
+    <label for="settings_reminder_lookback_days"><%= l(:label_open_timesheets_reminder_lookback) %></label>
+    <%= text_field_tag 'settings[reminder_lookback_days]', @settings['reminder_lookback_days'], size: 3 %>
+    <em class="info"><%= l(:text_open_timesheets_reminder_lookback_help) %></em>
+  </p>
+</div>

@@ -1,0 +1,43 @@
+<%
+  status = @summary.status_on(day)
+  badge = day_hours_badge(@summary, day)
+  note = day_note(@summary, day)
+%>
+<li class="<%= calendar_day_classes(@calendar, day, @period) %> calbody <%= day_status_class(status) %>">
+  <p class="day-num">
+    <%= day.day %>
+    <span class="abbr-day">(<%= abbr_day_name(day.cwday) %>)</span>
+    <% if badge %>
+      <span class="ots-badge"><%= badge %></span>
+    <% end %>
+    <% if status == :missing %>
+      <span class="ots-missing-mark" aria-hidden="true">!</span>
+      <span class="ots-sr-only"><%= l(:label_open_timesheets_day_missing) %></span>
+    <% end %>
+  </p>
+
+  <% if note %>
+    <p class="ots-note"><%= note %></p>
+  <% end %>
+
+  <%# On the global screen several projects are mixed, so entries say which one
+      they belong to. Repeating it on every line of a cell is noise, so it is
+      printed only when it changes. Redundant inside a project, hence hidden. %>
+  <% shown_project = nil %>
+  <% @summary.entries_on(day).each do |entry| %>
+    <div class="ots-entry">
+      <% if @project.nil? && entry.project != shown_project %>
+        <% shown_project = entry.project %>
+        <span class="ots-entry-project"><%= entry.project %></span>
+      <% end %>
+      <% if entry.issue %>
+        <%= link_to_issue entry.issue, truncate: 30 %>
+      <% end %>
+      <span class="ots-entry-hours"><%= format_hours(entry.hours) %></span>
+      <span class="ots-entry-activity"><%= entry.activity %></span>
+      <% unless @summary.personal? %>
+        <span class="ots-entry-user"><%= entry.user %></span>
+      <% end %>
+    </div>
+  <% end %>
+</li>

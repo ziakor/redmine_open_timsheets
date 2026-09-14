@@ -1,0 +1,132 @@
+/* Layout comes from Redmine's application.css: the grid reuses ul.cal and
+   calbody. Only badges and day states are defined here. */
+
+.ots-summary {
+  margin: 0.5em 0;
+  padding: 0.4em 0.6em;
+  border: 1px solid #d0d0d0;
+  border-radius: 3px;
+}
+
+.ots-summary span {
+  margin-right: 1.5em;
+}
+
+/* Two distinct roles on one line: moving through time on the left, choosing
+   the period on the right. Wraps to two lines on a narrow screen. */
+.ots-nav {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5em 1.5em;
+  margin: 0.5em 0;
+}
+
+.ots-nav-steps {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.7em;
+}
+
+.ots-period-switch {
+  display: inline-flex;
+  margin-left: auto;
+  border: 1px solid #d0d0d0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ots-period-switch a {
+  padding: 0.1em 0.8em;
+  color: #333;
+  text-decoration: none;
+}
+
+.ots-period-switch a + a {
+  border-left: 1px solid #d0d0d0;
+}
+
+.ots-period-switch a.selected {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+/* Redmine right-aligns .day-num, so these float left to avoid running into
+   the day number. */
+.ots-badge {
+  float: left;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+.ots-note {
+  margin: 0;
+  font-size: 0.85em;
+  font-style: italic;
+  color: #666;
+}
+
+.ots-entry {
+  font-size: 0.9em;
+}
+
+.ots-entry-hours {
+  font-weight: bold;
+  margin-left: 0.3em;
+}
+
+.ots-entry-user {
+  color: #666;
+  margin-left: 0.3em;
+}
+
+/* Context, not content: kept quiet so the issue stays the thing you read. */
+.ots-entry-project,
+.ots-entry-activity {
+  color: #777;
+  font-size: 0.9em;
+}
+
+.ots-entry-project::after {
+  content: ' - ';
+}
+
+.ots-entry-activity {
+  margin-left: 0.3em;
+}
+
+/* A declared day must stay quiet. Only the gap earns attention. */
+.calbody.ots-logged {
+  background-color: #f6fbf6;
+}
+
+.calbody.ots-missing {
+  background-color: #fdf3f3;
+  box-shadow: inset 3px 0 0 #c44;
+}
+
+.ots-missing-mark {
+  float: left;
+  font-weight: bold;
+  color: #c44;
+  margin-right: 0.4em;
+}
+
+.calbody.ots-future {
+  opacity: 0.55;
+}
+
+/* Colour is never the only carrier: the marker above is read out here. */
+.ots-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+@media print {
+  .calbody.ots-missing {
+    box-shadow: inset 3px 0 0 #000;
+  }
+}

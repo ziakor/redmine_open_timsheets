@@ -1,0 +1,44 @@
+<div class="contextual">
+  <%= link_to l(:label_open_timesheets_absence_new),
+              new_timesheet_absence_path(user_id: params[:user_id]),
+              class: 'icon icon-add' %>
+</div>
+
+<h2><%= l(:label_open_timesheets_absences) %><%= " (#{@user})" if @user != User.current %></h2>
+
+<% if @absences.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l(:field_open_timesheets_absence_start_date) %></th>
+        <th><%= l(:field_open_timesheets_absence_end_date) %></th>
+        <th><%= l(:field_open_timesheets_absence_absence_type) %></th>
+        <th><%= l(:field_open_timesheets_absence_half_day) %></th>
+        <th><%= l(:field_comments) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @absences.each do |absence| %>
+        <tr>
+          <td><%= format_date(absence.start_date) %></td>
+          <td><%= format_date(absence.end_date) %></td>
+          <td><%= l("absence_type_#{absence.absence_type}") %></td>
+          <td><%= absence.half_day? ? l(:general_text_Yes) : l(:general_text_No) %></td>
+          <td><%= absence.comments %></td>
+          <td class="buttons">
+            <%= link_to l(:button_edit),
+                        edit_timesheet_absence_path(absence, user_id: params[:user_id]),
+                        class: 'icon icon-edit' %>
+            <%= link_to l(:button_delete),
+                        timesheet_absence_path(absence, user_id: params[:user_id]),
+                        data: { confirm: l(:text_are_you_sure) },
+                        method: :delete, class: 'icon icon-del' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
